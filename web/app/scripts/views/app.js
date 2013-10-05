@@ -23,6 +23,8 @@ define(['backbone',
       return this;
     },
     searchFriendsByLocation: function() {
+      console.log(friendTemplate);
+      var friendTemplateTemplated = _.template(friendTemplate);
       var location = this.$el.find(".location-box").val();
       var friendList = this.$el.find("#friends");
       FB.api({
@@ -32,11 +34,9 @@ define(['backbone',
               var friends = new FriendsCollection();
               friends.add(response);
               friendList.html("");
-              var friendTemplate = _.template(friendTemplate);
               friends.each(function(friend) {
-                friendList.append(friendTemplate(friend.toJSON()));
+                friendList.append(friendTemplateTemplated(friend.toJSON()));
               });
-              console.log(friends);
           });
     }
   });
