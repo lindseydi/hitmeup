@@ -99,8 +99,8 @@ define(['jquery',
                   .animate({marginTop: 25}, {duration: 750, easing: "easeOutExpo"})
                   .on("click tap", function() {
                     var msg = $(".message").val();
-                    var recips = $(".active");
-                    $.each(recips, function(recip) {
+                    alert(msg);
+                    $.each("friends-listing > .active", function(recip) {
                       var custom_msg = msg.replace("%name%", recip.data("fname"));
                       alert(custom_msg);
                     });
