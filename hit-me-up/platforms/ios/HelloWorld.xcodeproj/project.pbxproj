@@ -43,6 +43,7 @@
 		634F63CF904E4B88B77DB754 /* CDVContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C91410C5D89428EBB87B58D /* CDVContact.m */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
+		38014C4A8830454D89FF705B /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D34DD9CBC54B92AAB653A0 /* CDVInAppBrowser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +153,8 @@
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		DF207F62FEF448CF80F675F0 /* CDVContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVContact.h; path = org.apache.cordova.contacts/CDVContact.h; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = HelloWorld/config.xml; sourceTree = "<group>"; };
+		C2D34DD9CBC54B92AAB653A0 /* CDVInAppBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVInAppBrowser.m"; path = "org.apache.cordova.inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		AA42947F8F5C4E18B47C1359 /* CDVInAppBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVInAppBrowser.h"; path = "org.apache.cordova.inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +296,8 @@
 				2C91410C5D89428EBB87B58D /* CDVContact.m */,
 				77C8CB5BB25E458492C9EDA9 /* CDVContacts.h */,
 				DF207F62FEF448CF80F675F0 /* CDVContact.h */,
+				C2D34DD9CBC54B92AAB653A0 /* CDVInAppBrowser.m */,
+				AA42947F8F5C4E18B47C1359 /* CDVInAppBrowser.h */,
 			);
 			name = Plugins;
 			path = HelloWorld/Plugins;
@@ -524,6 +529,7 @@
 				14E12B623B844B79A034EB82 /* CDVLocation.m in Sources */,
 				5CE7C8398A864EF5B5A20B34 /* CDVContacts.m in Sources */,
 				634F63CF904E4B88B77DB754 /* CDVContact.m in Sources */,
+				38014C4A8830454D89FF705B /* CDVInAppBrowser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

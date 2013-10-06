@@ -29,9 +29,9 @@
         <script type="text/javascript">
             //contact native access code
             function onSuccess(contacts) {
-                alert(contacts.length);
+                // alert(contacts.length);
                 for (var i = 0; i < contacts.length; i++) {
-                    alert("Display Name = " + contacts[i].name.formatted + " " + contacts[i].phoneNumbers[0].value);
+                    // alert("Display Name = " + contacts[i].name.formatted + " " + contacts[i].phoneNumbers[0].value);
                 }
             }
 
@@ -51,12 +51,9 @@
                 var fields = [ "name", "phoneNumbers"];
                 navigator.contacts.find(fields, onSuccess, onError, options);
             }
-            window.onerror = function(message, url, lineNumber) {
-               console.log("Error: "+message+" in "+url+" at line "+lineNumber);
-           }
         </script>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-        <script type="text/javascript" src="js/faceGap-1.0.js"></script>
+
 
         <!-- cordova -->
         <!--<script type="text/javascript" src="cordova.js"></script>

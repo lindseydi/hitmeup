@@ -17,8 +17,9 @@
     <feature name="Contacts">
         <param name="ios-package" value="CDVContacts" />
     </feature>
-    <feature name="org.apache.cordova.facebook.Connect">
-        <param name="ios-package" value="FacebookConnectPlugin" />
+    <plugin name="InAppBrowser" value="CDVInAppBrowser" />
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
     </feature>
     <access origin="*" />
     <preference name="KeyboardDisplayRequiresUserAction" value="true" />

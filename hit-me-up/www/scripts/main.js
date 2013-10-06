@@ -5,7 +5,8 @@ require.config({
     'backbone': 'vendor/backbone-amd/backbone',
     'facebook': 'http://connect.facebook.net/en_US/all',
     'text' : 'vendor/text',
-    'easing': 'vendor/easing'
+    'easing': 'vendor/easing',
+    'facegap': 'vendor/faceGap-1.0'
   },
   shim: {
     'facebook' : {
@@ -13,10 +14,13 @@ require.config({
     },
     'easing': {
         deps: ['jquery']
+    },
+    'facegap': {
+        deps: ['jquery']
     }
   },
 });
 
-require(['views/app', 'vendor/fb'], function(AppView) {
+require(['views/app', 'facebook'], function(AppView) {
   new AppView;
 });
