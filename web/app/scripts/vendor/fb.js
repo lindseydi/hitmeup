@@ -64,9 +64,7 @@ define(['facebook'], function(){
       }
     };
   FB.init({
-    appId      : '225319554294218',
-    nativeInterface: CDV.FB,
-    useCachedDialogs: false
+    appId      : '225319554294218'
   });
   FB.getLoginStatus(function(response) {
     console.log(response);

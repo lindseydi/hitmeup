@@ -30,3 +30,9 @@
 .btn-facebook.active {
   background-color: #0d2456 \9;
 }
+
+
+body {
+  background-image: url("/img/navy_blue.png");
+  margin: 20px;
+}
