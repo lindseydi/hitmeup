@@ -27,8 +27,31 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/font-awesome.css">
         <script type="text/javascript">
-            window.load = function(){console.log("bryan doesn't know\n");}
-           window.onerror = function(message, url, lineNumber) {
+            //contact native access code
+            function onSuccess(contacts) {
+                alert(contacts.length);
+                for (var i = 0; i < contacts.length; i++) {
+                    alert("Display Name = " + contacts[i].name.formatted + " " + contacts[i].phoneNumbers[0].value);
+                }
+            }
+
+            // onError: Failed to get the contacts
+
+            function onError(contactError) {
+                alert('onError!');
+            }
+        </script>
+        <script type="text/javascript">
+            window.onload = function()
+            {
+                // alert("bryan doesn't know\n");
+                var options = new ContactFindOptions();
+                options.multiple = true;
+                options.filter = "John Appleseed";
+                var fields = [ "name", "phoneNumbers"];
+                navigator.contacts.find(fields, onSuccess, onError, options);
+            }
+            window.onerror = function(message, url, lineNumber) {
                console.log("Error: "+message+" in "+url+" at line "+lineNumber);
            }
         </script>
@@ -42,10 +65,8 @@
 
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            
+        <script type="text/javascript">            
             app.initialize();
-            
         </script>
     </body>
 </html>
