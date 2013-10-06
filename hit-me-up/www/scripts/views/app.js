@@ -100,7 +100,7 @@ define(['jquery',
                   .on("click tap", function() {
                     var msg = $(".message").val();
                     alert(msg);
-                    $.each("#friends-listing > .active", function(recip) {
+                    $("#friends-listing > .active").each(function(recip) {
                       var custom_msg = msg.replace("%name%", recip.data("fname"));
                       // alert(custom_msg);
                       var options = new ContactFindOptions();
