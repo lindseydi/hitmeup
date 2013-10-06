@@ -100,9 +100,18 @@ define(['jquery',
                   .on("click tap", function() {
                     var msg = $(".message").val();
                     alert(msg);
-                    $.each("friends-listing > .active", function(recip) {
+                    $.each("#friends-listing > .active", function(recip) {
                       var custom_msg = msg.replace("%name%", recip.data("fname"));
-                      alert(custom_msg);
+                      // alert(custom_msg);
+                      var options = new ContactFindOptions();
+                      options.multiple = true;
+                      options.filter = recip.data("name");
+                      var fields = [ "name", "phoneNumbers"];
+                      navigator.contacts.find(fields, function(contacts) {
+                        if (contacts.length > 0) {
+                          alert("Sending: " + custom_msg + " to " + contacts[0].phoneNumbers[0].value);
+                        }
+                      }, null, options);
                     });
                     $(".success-page").css("margin-top", "-500px").show().animate({marginTop: 25}, {duration: 750, easing: "easeOutExpo"});
                   });
