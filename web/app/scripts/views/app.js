@@ -4,7 +4,7 @@ define(['jquery',
         'text!templates/home.html',
         'text!templates/friend.html',
         'collections/FriendsCollection',
-        'easing'],
+        'easing'
   function($, Backbone, fb, template, friendTemplate, FriendsCollection) {
   var App = Backbone.View.extend({
     events: {
@@ -90,6 +90,7 @@ define(['jquery',
                 var winH = $(window).height();
                 $("#friends").animate({marginTop: winH}, {duration: 750, easing: "easeInExpo", complete: function() {
                   $(this).hide();
+                  $(".message").css("margin-top", "-500px").show().animate({marginTop: 25}, {duration: 750, easing: "easeOutExpo"});
                 }});
               });
           });
@@ -109,6 +110,7 @@ define(['jquery',
     currentLocale: function() {
       this.hideButtons();
       this.searchFriendsByLocation($(".city-name").text());
+      $(".message").val("Hi %name%!. I'm heading to " + $(".city-name").text() + " soon -- let's meet up!");
     },
     futurePlan: function() {
       this.hideButtons();
