@@ -6,7 +6,8 @@ define(['backbone',
   function(Backbone, fb, template, friendTemplate, FriendsCollection) {
   var App = Backbone.View.extend({
     events: {
-        "click .search-location": "searchFriendsByLocation"
+        "click .search-location": "searchFriendsByLocation",
+        "click tap .friend": "selectFriend",
     },
     el: ".page",
     template: _.template(template),
@@ -23,6 +24,7 @@ define(['backbone',
       return this;
     },
     searchFriendsByLocation: function() {
+      var that = this;
       console.log(friendTemplate);
       var friendTemplateTemplated = _.template(friendTemplate);
       var location = this.$el.find(".location-box").val();
@@ -37,7 +39,13 @@ define(['backbone',
               friends.each(function(friend) {
                 friendList.append(friendTemplateTemplated(friend.toJSON()));
               });
+              $(".friend").on("click tap", that.selectFriend);
           });
+    },
+
+    selectFriend: function(ev) {
+      console.log($(ev.target).text());
+      $(ev.target).toggleClass("active");
     }
   });
 
