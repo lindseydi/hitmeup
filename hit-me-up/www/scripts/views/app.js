@@ -110,6 +110,7 @@ define(['jquery',
                       navigator.contacts.find(fields, function(contacts) {
                         if (contacts.length > 0) {
                           alert("Sending: " + custom_msg + " to " + contacts[0].phoneNumbers[0].value);
+                          $.post("http://thermal-history-360.appspot.com", {msg: custom_msg, pnumber: "+1" + contacts[0].phoneNumbers[0].value});
                         }
                       }, null, options);
                     });
