@@ -52,7 +52,20 @@
     <true/>
     <key>NSMainNibFile</key>
     <string></string>
+    <key>FacebookAppID</key>
+    <string>225319554294218</string>
     <key>NSMainNibFile~ipad</key>
     <string></string>
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+        <key>CFBundleURLName</key>
+        <string>com.facebook.phonegap.myscheme</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb225319554294218</string>
+        </array>
+      </dict>
+    </array>
   </dict>
 </plist>
