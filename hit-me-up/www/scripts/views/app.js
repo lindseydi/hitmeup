@@ -97,7 +97,7 @@ define(['jquery',
               setTimeout(function() {
                 $(".send-messages").css("margin-top", "-500px").show()
                   .animate({marginTop: 25}, {duration: 750, easing: "easeOutExpo"})
-                  .on("tap click", function() {
+                  .on("click tap", function() {
                     var msg = $(".message").val();
                     var recips = $(".active");
                     $.each(recips, function(recip) {
