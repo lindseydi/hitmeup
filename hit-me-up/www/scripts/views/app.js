@@ -94,12 +94,26 @@ define(['jquery',
             $("#friends").animate({marginTop: winH}, {duration: 750, easing: "easeInExpo", complete: function() {
               $(this).hide();
               $(".message").css("margin-top", "-500px").show().animate({marginTop: 25}, {duration: 750, easing: "easeOutExpo"});
+              setTimeout(function() {
+                $(".send-messages").css("margin-top", "-500px").show()
+                  .animate({marginTop: 25}, {duration: 750, easing: "easeOutExpo"})
+                  .on("tap click", function() {
+                    var msg = $(".message").val();
+                    var recips = $(".active");
+                    $.each(recips, function(recip) {
+                      var custom_msg = msg.replace("%name%", recip.data("fname"));
+                      alert(custom_msg);
+                    });
+                    $(".success-page").css("margin-top", "-500px").show().animate({marginTop: 25}, {duration: 750, easing: "easeOutExpo"});
+                  });
+
+              }, 250);
             }});
           });
       }
       
       //Config Object FB API
-      var query = 'select current_location, name, pic_square FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=me()) and "' + location + '" in current_location LIMIT 20'
+      var query = 'select current_location, name, pic_square, first_name FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=me()) and "' + location + '" in current_location LIMIT 20'
       var _fb = {
           path    :   '/fql',
           method  :   'GET',
