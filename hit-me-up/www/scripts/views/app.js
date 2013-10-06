@@ -13,6 +13,7 @@ define(['jquery',
         "click tap .friend": "selectFriend",
         "click tap .first-page-btn": "hideButtons"
     },
+    chosenFriends: [],
     el: ".page",
     template: _.template(template),
     initialize: function() {
@@ -100,12 +101,12 @@ define(['jquery',
                   .on("click tap", function() {
                     var msg = $(".message").val();
                     alert(msg);
-                    $("#friends-listing > .active").each(function(recip) {
-                      var custom_msg = msg.replace("%name%", recip.data("fname"));
+                    _.each(that.chosenFriends, function(recip) {
+                      var custom_msg = msg.replace("%name%", recip.fname);
                       // alert(custom_msg);
                       var options = new ContactFindOptions();
                       options.multiple = true;
-                      options.filter = recip.data("name");
+                      options.filter = recip.name;
                       var fields = [ "name", "phoneNumbers"];
                       navigator.contacts.find(fields, function(contacts) {
                         if (contacts.length > 0) {
@@ -132,7 +133,7 @@ define(['jquery',
       };
     
     //Get FB API
-    $(document).FaceGap('fb_api', _fb); 
+    $(document).FaceGap('fb_api', _fb);
       // FB.api({
       //     method: 'fql.query',
       //     query: 'select current_location, name, pic_square FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=me()) and "' + location + '" in current_location LIMIT 20',
@@ -142,6 +143,7 @@ define(['jquery',
     },
 
     selectFriend: function(ev) {
+      this.chosenFriends.push({"fname": $(ev.target).data("fname"), "name": $(ev.target).data("name")});
       $(ev.target).toggleClass("active");
     },
 
