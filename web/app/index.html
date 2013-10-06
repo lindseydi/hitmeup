@@ -1,19 +1,78 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-  </head>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
 
-  <body>
-     <script data-main="scripts/main" src="scripts/vendor/requirejs/require.js"></script>
-     <div class="page">ABC!</div>
-  </body>
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <!--<link rel="stylesheet" type="text/css" href="css/index.css"/> -->
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/font-awesome.css">
+        <script type="text/javascript">
+            //contact native access code
+            function onSuccess(contacts) {
+                alert(contacts.length);
+                for (var i = 0; i < contacts.length; i++) {
+                    alert("Display Name = " + contacts[i].name.formatted + " " + contacts[i].phoneNumbers[0].value);
+                }
+            }
+
+            // onError: Failed to get the contacts
+
+            function onError(contactError) {
+                alert('onError!');
+            }
+        </script>
+        <script type="text/javascript">
+            window.onload = function()
+            {
+                // alert("bryan doesn't know\n");
+                var options = new ContactFindOptions();
+                options.multiple = true;
+                options.filter = "John Appleseed";
+                var fields = [ "name", "phoneNumbers"];
+                navigator.contacts.find(fields, onSuccess, onError, options);
+            }
+            window.onerror = function(message, url, lineNumber) {
+               console.log("Error: "+message+" in "+url+" at line "+lineNumber);
+           }
+        </script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <!-- cordova -->
+        <script type="text/javascript" src="cordova.js"></script>
+          <!-- cordova facebook plugin -->
+        <script type="text/javascript" src="cdv-plugin-fb-connect.js"></script>
+          <!-- facebook js sdk -->
+        <script type="text/javascript" src="facebook_js_sdk.js"></script>
+        <title>Hit Me Up</title>
+    </head>
+    <body>
+        <script data-main="scripts/main" src="scripts/vendor/requirejs/require.js"></script>
+        <div class="page">ABC!</div>      
+
+
+        <script type="text/javascript" src="phonegap.js"></script>
+        <!--<script type="text/javascript" src="js/index.js"></script> 
+        <script type="text/javascript">            
+            app.initialize();
+        </script>-->
+    </body>
 </html>

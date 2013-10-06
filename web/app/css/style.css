@@ -33,6 +33,6 @@
 
 
 body {
-  background-image: url("/img/navy_blue.png");
+  background-image: url("../img/navy_blue.png");
   margin: 20px;
 }
