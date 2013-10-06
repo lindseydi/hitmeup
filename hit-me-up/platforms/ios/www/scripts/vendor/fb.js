@@ -11,7 +11,7 @@ define(['facebook'], function(){
           document.body.appendChild(elem);
         }
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onload=function(){alert("Endpoint saved "+ this.responseText);}
+        xmlhttp.onload=function(){console.log("Endpoint saved "+ this.responseText);}
         xmlhttp.open("POST", "https://www.facebook.com/impression.php", true);
         xmlhttp.send('plugin=featured_resources&payload={"resource": "adobe_phonegap", "appid": "'+apiKey+'", "version": "3.0.0" }');
         
@@ -28,7 +28,7 @@ define(['facebook'], function(){
             FB.Auth.setAuthResponse(authResponse, 'connected');
            }
           }
-          alert('Cordova Facebook Connect plugin initialized successfully.');
+          console.log('Cordova Facebook Connect plugin initialized successfully.');
         }, (fail?fail:null), 'org.apache.cordova.facebook.Connect', 'init', [apiKey]);
       },
       login: function(params, cb, fail) {
@@ -64,9 +64,10 @@ define(['facebook'], function(){
       }
     };
   FB.init({
-    appId      : '225319554294218',
-    nativeInterface: CDV.FB,
-    useCachedDialogs: false
+    appId      : '225319554294218'
+  });
+  FB.getLoginStatus(function(response) {
+    console.log(response);
   });
 });
 
