@@ -33,8 +33,36 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-        app.trialEvent('deviceready');
+    //        document.addEventListener("deviceready", onDeviceReady, false);
+    
+        //Config Plugin
+        var config = {
+            app_id      : '',
+            secret      : '',
+            scope       : 'publish_stream,email',
+            host        : '', //App Domain ( Facebook Developer ).
+            onLogin     : _onLogin,
+            onLogout    : _onLogout
+        };
+        
+        //Login Facebook
+        $(document).FaceGap(config);
+        //Logout Facebook
+        //$(document).FaceGap('logout');
+        
+        //Callback Login
+        function _onLogin( event ){     
+            alert('status > '+event.status); // 1 - success, 0 - error
+            alert('data > '+event.data); //Object response (id, name, email, etc);
+            alert('token > '+event.token); // token user login
+            alert('message > '+event.message);  
+        }
+        
+        //Callback Logout
+        function _onLogout( event ){
+            alert('status > '+event.status); // 1 - success, 0 - error
+            alert('message > '+event.message);
+        }   
 
     },
     // Update DOM on a Received Event
