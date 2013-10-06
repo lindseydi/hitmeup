@@ -14,6 +14,7 @@ define(['backbone',
     initialize: function() {
       this.render();
       FB.login(function(response) {
+        console.log("login response: " + response);
         if (response.authResponse) {
             console.log("logged in to facebook!");
        }
@@ -25,7 +26,7 @@ define(['backbone',
     },
     searchFriendsByLocation: function() {
       var that = this;
-      console.log(friendTemplate);
+      console.log("trying to search");
       var friendTemplateTemplated = _.template(friendTemplate);
       var location = this.$el.find(".location-box").val();
       var friendList = this.$el.find("#friends");
@@ -33,6 +34,7 @@ define(['backbone',
           method: 'fql.query',
           query: 'select current_location, name, pic_square FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=me()) and "' + location + '" in current_location',
           }, function(response){
+            console.log("facebook response: " + response);
               var friends = new FriendsCollection();
               friends.add(response);
               friendList.html("");
@@ -44,7 +46,6 @@ define(['backbone',
     },
 
     selectFriend: function(ev) {
-      console.log($(ev.target).text());
       $(ev.target).toggleClass("active");
     }
   });
