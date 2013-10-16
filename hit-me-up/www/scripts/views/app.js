@@ -85,7 +85,7 @@ define(['jquery',
             setTimeout(function(){
               $(friendTemplateTemplated(friend.toJSON())).appendTo("#friends-listing")
                 .animate({marginTop: 0}, {duration: 750, easing: "easeOutExpo"})
-                .on("click tap", that.selectFriend);
+                .on("click tap", _.bind(that.selectFriend, that));
               }, i);
               i = i + 100;
           });
@@ -100,7 +100,7 @@ define(['jquery',
                   .animate({marginTop: 25}, {duration: 750, easing: "easeOutExpo"})
                   .on("click tap", function() {
                     var msg = $(".message").val();
-                    alert(msg);
+                    $(".message").hide();
                     _.each(that.chosenFriends, function(recip) {
                       var custom_msg = msg.replace("%name%", recip.fname);
                       // alert(custom_msg);
@@ -110,12 +110,17 @@ define(['jquery',
                       var fields = [ "name", "phoneNumbers"];
                       navigator.contacts.find(fields, function(contacts) {
                         if (contacts.length > 0) {
-                          alert("Sending: " + custom_msg + " to " + contacts[0].phoneNumbers[0].value);
                           $.post("http://thermal-history-360.appspot.com", {msg: custom_msg, pnumber: "+1" + contacts[0].phoneNumbers[0].value});
                         }
                       }, null, options);
                     });
-                    $(".success-page").css("margin-top", "-500px").show().animate({marginTop: 25}, {duration: 750, easing: "easeOutExpo"});
+                    $(".send-messages").animate({marginTop: winH}, {duration: 750, easing: "easeInExpo", complete: function() {
+                      $(".messages").animate({marginTop: winH}, {duration: 750, easing: "easeInExpo", complete: function() {
+                        $(this).hide();
+                      }});
+                      $(this).hide();
+                      $(".success-page").css("margin-top", "-500px").show().animate({marginTop: 25}, {duration: 750, easing: "easeOutExpo"});
+                    }});
                   });
 
               }, 250);
@@ -143,6 +148,8 @@ define(['jquery',
     },
 
     selectFriend: function(ev) {
+      // alert($(ev.target).data("fname"));
+      // alert($(ev.target).data("name"));
       this.chosenFriends.push({"fname": $(ev.target).data("fname"), "name": $(ev.target).data("name")});
       $(ev.target).toggleClass("active");
     },
@@ -157,11 +164,26 @@ define(['jquery',
     currentLocale: function() {
       this.hideButtons();
       this.searchFriendsByLocation($(".city-name").text());
-      $(".message").val("Hi %name%!. I'm heading to " + $(".city-name").text() + " soon -- let's meet up!");
+      $(".message").val("Hi %name%! I'm heading to " + $(".city-name").text() + " soon -- let's meet up!");
     },
     futurePlan: function() {
-      this.hideButtons();
-      this.searchFriendsByLocation("Boston");
+      var that = this;
+      var winH = $(window).height();
+      $(".current-locale").animate({marginTop: winH}, {duration: 750, easing: "easeInExpo", complete: function() {
+        $(this).hide();
+        $(".where-to-box").css("margin-top", "-500px").show().animate({marginTop: 25}, {duration: 750, easing: "easeOutExpo"});
+        $(".search-for-destination").css("margin-top", "-500px").show()
+          .animate({marginTop: 25}, {duration: 750, easing: "easeOutExpo"})
+          .on("click tap", function() {
+            $(".first-page-btn").animate({marginTop: winH}, {duration: 750, easing: "easeInExpo", complete: function() {
+              $(this).hide();
+              $(".where-to-box").animate({marginTop: winH}, {duration: 750, easing: "easeInExpo"});
+              that.searchFriendsByLocation($(".future-destination").val());
+            }});
+          })
+      }});
+
+      // this.searchFriendsByLocation("Boston");
     }
   });
 
